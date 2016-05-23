@@ -1,3 +1,5 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
 // Instead of doing
 //   import { Form, FormGroup, FormControl } from 'react-bootstrap';
 // Let's reduce the size of the bundle by requiring individual files.

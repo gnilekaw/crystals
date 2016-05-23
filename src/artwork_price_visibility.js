@@ -1,3 +1,4 @@
+import React from 'react';
 import ArtworkAttributeSelect from './artwork_attribute_select';
 
 const composeArtworkPriceVisibility = (Component) => {
