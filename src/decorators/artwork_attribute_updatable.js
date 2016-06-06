@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import _ from 'underscore';
 import React from 'react';
-import { serializeFormDataToObject } from '../../src/helpers/dom_utils';
+import { serializeFormDataToObject } from '../helpers/dom_utils';
 
 const ArtworkAttributeUpdatable = Wrapped => {
   class ArtworkAttributeUpdatableComponent extends React.Component {
