@@ -1,0 +1,4 @@
+--compilers js:babel-core/register
+--require test/support/setup.js
+--require should
+--require should-sinon
