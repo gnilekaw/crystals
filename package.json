@@ -4,7 +4,7 @@
   "description": "",
   "main": "lib/index.js",
   "scripts": {
-    "build": "babel src --out-dir lib",
+    "build": "babel ./src --out-dir ./lib",
     "prepublish": "npm run build",
     "postinstall": "if [ ! -f lib/index.js ]; then npm run build; fi",
     "test": "mocha --recursive"
