@@ -23,42 +23,6 @@ describe('ArtworkAttributeUpdatable', () => {
     $.ajax.restore();
   });
 
-  describe('validation', () => {
-    beforeEach(() => {
-      sinon.stub(console, 'error');
-    });
-
-    afterEach(() => {
-      console.error.restore();
-    });
-
-    it('raises a warning when missing artwork in the props', () => {
-      const props = {saveUrl: "/api/artworks/mona-lisa"};
-
-      instance = ReactDOM.render(
-        React.createElement(DecoratedComponent, props), el);
-
-      console.error.should.be.calledOnce();
-      console.error.should.be.calledWithExactly(
-        "Warning: Failed propType: Required prop `artwork` was not " +
-        "specified in `ArtworkAttributeUpdatableComponent`."
-      );
-    });
-
-    it('raises a warning when missing saveUrl in the props', () => {
-      const props = {artwork: {title: "mona-lisa"}};
-
-      instance = ReactDOM.render(
-        React.createElement(DecoratedComponent, props), el);
-
-      console.error.should.be.calledOnce();
-      console.error.should.be.calledWithExactly(
-        "Warning: Failed propType: Required prop `saveUrl` was not " +
-        "specified in `ArtworkAttributeUpdatableComponent`."
-      );
-    });
-  })
-
   describe('#onSubmit', () => {
     let dfd, $form;
 

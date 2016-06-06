@@ -20,6 +20,19 @@ InlineArtworkPrice.propTypes = {
 InlineArtworkPrice.defaultProps = {
 };
 
-// TODO: The HOC pattern hides the applicable props for the decorated component,
-// one has to look at the decorator to see the details of the props.
-export default ArtworkAttributeUpdatable(InlineArtworkPrice);
+/*
+ * ArtworkPriceQuickEdit is an InlineArtworkPrice component decorated by
+ * ArtworkAttributeUpdatable.
+ */
+const ArtworkPriceQuickEdit = ArtworkAttributeUpdatable(InlineArtworkPrice);
+
+ArtworkPriceQuickEdit.propTypes = {
+  artwork: React.PropTypes.object.isRequired,
+  saveUrl: React.PropTypes.string.isRequired,
+  t: React.PropTypes.object
+}
+
+ArtworkPriceQuickEdit.defaultProps = {
+}
+
+export default ArtworkPriceQuickEdit;

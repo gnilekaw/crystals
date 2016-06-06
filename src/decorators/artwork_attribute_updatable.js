@@ -34,14 +34,6 @@ const ArtworkAttributeUpdatable = Wrapped => {
     }
   }
 
-  ArtworkAttributeUpdatableComponent.propTypes = {
-    artwork: React.PropTypes.object.isRequired,
-    saveUrl: React.PropTypes.string.isRequired
-  };
-
-  ArtworkAttributeUpdatableComponent.defaultProps = {
-  };
-
   return ArtworkAttributeUpdatableComponent;
 }
 

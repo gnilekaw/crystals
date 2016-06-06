@@ -2,9 +2,9 @@ import $ from 'jquery';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import sinon from 'sinon';
-import { default as ArtworkPrice } from '../src/artwork_price';
+import { default as ArtworkPrice } from '../src/artwork_price_quick_edit';
 
-describe('ArtworkPrice', () => {
+describe('ArtworkPriceQuickEdit', () => {
   let el, instance;
 
   beforeEach(() => {
@@ -25,28 +25,28 @@ describe('ArtworkPrice', () => {
       console.error.restore();
     });
 
-    xit('raises a warning when missing artwork in the props', () => {
+    it('raises a warning when missing artwork in the props', () => {
       const props = {
         saveUrl: 'api/artworks/mona-lisa'
       };
       instance = ReactDOM.render(
         React.createElement(ArtworkPrice, props), el);
 
-      console.error.should.be.calledOnce();
+      console.error.should.be.called();
       console.error.should.be.calledWithExactly(
         "Warning: Failed propType: Required prop `artwork` was not " +
         "specified in `ArtworkAttributeUpdatableComponent`."
       );
     });
 
-    xit('raises a warning when missing t in the props', () => {
+    it('raises a warning when missing saveUrl in the props', () => {
       const props = {
         artwork: {price_listed: 100}
       };
       instance = ReactDOM.render(
         React.createElement(ArtworkPrice, props), el);
 
-      console.error.should.be.calledOnce();
+      console.error.should.be.called();
       console.error.should.be.calledWithExactly(
         "Warning: Failed propType: Required prop `saveUrl` was not " +
         "specified in `ArtworkAttributeUpdatableComponent`."

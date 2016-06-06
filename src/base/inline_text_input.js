@@ -57,6 +57,7 @@ InlineTextInput.propTypes = {
 };
 
 InlineTextInput.defaultProps = {
+  object: {}
 };
 
 export default InlineTextInput;
