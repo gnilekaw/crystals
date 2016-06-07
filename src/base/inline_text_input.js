@@ -33,14 +33,14 @@ class InlineTextInput extends React.Component {
               disabled={this.props.loading}
               defaultValue={this.props.object[this.props.attribute]}
             />
+            <Button
+              type="submit"
+              disabled={this.props.loading}
+              className={this.props.loading ? 'is-loading' : null}
+            >
+              {t(this.props.t, 'forms.save')}
+            </Button>
           </FormGroup>
-          <Button
-            type="submit"
-            disabled={this.props.loading}
-            className={this.props.loading ? 'is-loading' : null}
-          >
-            {t(this.props.t, 'forms.save')}
-          </Button>
         </Form>
       </div>
     );
