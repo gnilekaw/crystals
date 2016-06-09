@@ -64,5 +64,13 @@ describe('InlineTextInput', () => {
 
       $(root).find('form button[type="submit"]').text().should.equal('儲存');
     });
+
+    it('includes a hidden ignore_blank input', () => {
+      const props = {object: {}, attribute: "whatever"};
+      const instance = ReactDOM.render(React.createElement(InlineTextInput, props), el);
+      const root = ReactDOM.findDOMNode(instance);
+
+      $(root).find('form input[name="ignore_blank"]').val().should.equal('true');
+    });
   });
 });
