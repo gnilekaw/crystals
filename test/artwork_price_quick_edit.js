@@ -2,7 +2,7 @@ import $ from 'jquery';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import sinon from 'sinon';
-import { default as ArtworkPrice } from '../src/artwork_price_quick_edit';
+import { default as ArtworkPriceQuickEdit } from '../src/artwork_price_quick_edit';
 
 describe('ArtworkPriceQuickEdit', () => {
   let el, instance;
@@ -30,7 +30,7 @@ describe('ArtworkPriceQuickEdit', () => {
         saveUrl: 'api/artworks/mona-lisa'
       };
       instance = ReactDOM.render(
-        React.createElement(ArtworkPrice, props), el);
+        React.createElement(ArtworkPriceQuickEdit, props), el);
 
       console.error.should.be.called();
       console.error.should.be.calledWithExactly(
@@ -44,7 +44,7 @@ describe('ArtworkPriceQuickEdit', () => {
         artwork: {price_listed: 100}
       };
       instance = ReactDOM.render(
-        React.createElement(ArtworkPrice, props), el);
+        React.createElement(ArtworkPriceQuickEdit, props), el);
 
       console.error.should.be.called();
       console.error.should.be.calledWithExactly(
@@ -63,7 +63,7 @@ describe('ArtworkPriceQuickEdit', () => {
         saveUrl: '/api/artworks/mona-lisa'
       };
       instance = ReactDOM.render(
-        React.createElement(ArtworkPrice, props), el);
+        React.createElement(ArtworkPriceQuickEdit, props), el);
       $root = $(ReactDOM.findDOMNode(instance));
     });
 
@@ -88,7 +88,7 @@ describe('ArtworkPriceQuickEdit', () => {
         saveUrl: "/api/artworks/mona-lisa"
       };
       instance = ReactDOM.render(
-        React.createElement(ArtworkPrice, props), el);
+        React.createElement(ArtworkPriceQuickEdit, props), el);
       $root = $(ReactDOM.findDOMNode(instance));
       $root.find('input[name="price_listed"]').val(199);
       $root.find('button[type="submit"]').click();
