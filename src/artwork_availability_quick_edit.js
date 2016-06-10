@@ -30,10 +30,12 @@ const ArtworkAvailabilityQuickEdit = ArtworkAttributeUpdatable(InlineArtworkAvai
 ArtworkAvailabilityQuickEdit.propTypes = {
   artwork: React.PropTypes.object.isRequired,
   saveUrl: React.PropTypes.string.isRequired,
+  isEditionSet: React.PropTypes.bool,
   options: React.PropTypes.array.isRequired
 }
 
 ArtworkAvailabilityQuickEdit.defaultProps = {
+  isEditionSet: false
 }
 
 export default ArtworkAvailabilityQuickEdit;

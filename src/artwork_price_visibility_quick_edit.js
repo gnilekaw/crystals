@@ -36,10 +36,12 @@ const ArtworkPriceVisibilityQuickEdit = ArtworkAttributeUpdatable(InlineArtworkP
 ArtworkPriceVisibilityQuickEdit.propTypes = {
   artwork: React.PropTypes.object.isRequired,
   saveUrl: React.PropTypes.string.isRequired,
+  isEditionSet: React.PropTypes.bool,
   options: React.PropTypes.array.isRequired
 }
 
 ArtworkPriceVisibilityQuickEdit.defaultProps = {
+  isEditionSet: false
 }
 
 export default ArtworkPriceVisibilityQuickEdit;

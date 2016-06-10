@@ -41,7 +41,6 @@ describe('ArtworkAvailabilityQuickEdit', () => {
     });
 
     it('renders the form with proper fields', () => {
-      $root.find('form input[name="ignore_blank"]').val().should.equal('true');
       $root.find('form select[name="availability"]').val().should.equal('for sale');
     });
   });
@@ -75,8 +74,8 @@ describe('ArtworkAvailabilityQuickEdit', () => {
         $.ajax.should.be.calledOnce();
         $.ajax.firstCall.should.be.calledWith({
           url: '/api/artworks/mona-lisa',
-          type: 'PATCH',
-          data: {artwork: {ignore_blank: "true", availability: "not for sale"}},
+          type: 'PUT',
+          data: {ignore_blank: true, artwork: {availability: "not for sale"}},
           dataType: 'json'
         })
       });
