@@ -48,7 +48,6 @@ class InlineDropdown extends React.Component {
           onSubmit={this.props.onSubmit}
         >
           <FormGroup>
-            <input name="ignore_blank" value="true" type="hidden" />
             <FormControl
               componentClass="select"
               name={this.props.attribute}

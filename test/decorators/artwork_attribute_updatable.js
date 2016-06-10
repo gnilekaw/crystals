@@ -23,6 +23,55 @@ describe('ArtworkAttributeUpdatable', () => {
     $.ajax.restore();
   });
 
+  describe('#prepareData', () => {
+    describe('artwork', () => {
+      it('returns data wrapped in artwork', () => {
+        const props = {
+          artwork: {title: "Mona Lisa"},
+          saveUrl: "/api/artworks/mona-lisa"
+        };
+
+        instance = ReactDOM.render(
+          React.createElement(DecoratedComponent, props), el);
+
+        instance.prepareData({
+          title: "Mona Lisa II",
+          year: "1503 - 1517"
+        }).should.eql({
+          ignore_blank: true,
+          artwork: {
+            title: "Mona Lisa II",
+            year: "1503 - 1517"
+          }
+        });
+      });
+    });
+
+    describe('edition set', () => {
+      it('returns data wrapped in artwork', () => {
+        const props = {
+          artwork: {title: "Mona Lisa"},
+          isEditionSet: true,
+          saveUrl: "/api/artworks/mona-lisa"
+        };
+
+        instance = ReactDOM.render(
+          React.createElement(DecoratedComponent, props), el);
+
+        instance.prepareData({
+          title: "Mona Lisa II",
+          year: "1503 - 1517"
+        }).should.eql({
+          ignore_blank: true,
+          edition_set: {
+            title: "Mona Lisa II",
+            year: "1503 - 1517"
+          }
+        });
+      });
+    });
+  });
+
   describe('#onSubmit', () => {
     let dfd, $form;
 
@@ -59,8 +108,8 @@ describe('ArtworkAttributeUpdatable', () => {
       $.ajax.calledOnce.should.be.true();
       $.ajax.args[0][0].should.eql({
         url: "/api/artworks/mona-lisa",
-        type: "PATCH",
-        data: {artwork: {ignore_blank: "true", title: "Portrait of Mona Lisa"}},
+        type: "PUT",
+        data: {ignore_blank: true, artwork: {ignore_blank: "true", title: "Portrait of Mona Lisa"}},
         dataType: "json"
       });
     });

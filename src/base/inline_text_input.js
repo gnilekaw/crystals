@@ -26,7 +26,6 @@ class InlineTextInput extends React.Component {
           onSubmit={this.props.onSubmit}
         >
           <FormGroup>
-            <input name="ignore_blank" value="true" type="hidden" />
             <FormControl
               type="text"
               name={this.props.attribute}

@@ -87,14 +87,6 @@ describe('InlineDropdown', () => {
       const instance = ReactDOM.render(React.createElement(InlineDropdown, props), el);
       const root = ReactDOM.findDOMNode(instance);
     });
-
-    it('includes a hidden ignore_blank input', () => {
-      const props = {object: {}, attribute: "whatever", options: []};
-      const instance = ReactDOM.render(React.createElement(InlineDropdown, props), el);
-      const root = ReactDOM.findDOMNode(instance);
-
-      $(root).find('form input[name="ignore_blank"]').val().should.equal('true');
-    });
   });
 
   describe('#optionLabelByValue', () => {

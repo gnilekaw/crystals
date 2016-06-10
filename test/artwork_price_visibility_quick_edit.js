@@ -40,7 +40,6 @@ describe('ArtworkPriceVisibilityQuickEdit', () => {
     });
 
     it('renders the form with proper fields', () => {
-      $root.find('form input[name="ignore_blank"]').val().should.equal('true');
       $root.find('form select[name="display_price"]').val().should.equal('hidden');
     });
   });
@@ -73,8 +72,8 @@ describe('ArtworkPriceVisibilityQuickEdit', () => {
         $.ajax.should.be.calledOnce();
         $.ajax.firstCall.should.be.calledWith({
           url: '/api/artworks/mona-lisa',
-          type: 'PATCH',
-          data: {artwork: {ignore_blank: "true", display_price: "range"}},
+          type: 'PUT',
+          data: {ignore_blank: true, artwork: {display_price: "range"}},
           dataType: 'json'
         })
       });
