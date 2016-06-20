@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Crystals Demo</title>
+  </head>
+
+  <body>
+    <h1>Crystals Demo</h1>
+    <p>
+      Demonstrate the
+      <a href="https://github.com/starsirius/crystals" target="_blank">crystals</a>
+      react components. We use a
+      <a href="http://docs.artworks.apiary.io/" target="_blank">mock server</a>
+      powered by
+      <a href="https://apiary.io/" target="_blank">apiary</a>
+      to simulate AJAX API requests.
+    </p>
+    <p>
+      Note that since it's a mock server, it will
+      always return the same data. You can still see the real data sent over in the
+      AJAX requests via a browser's developer tools.
+    </p>
+
+    <nav role="navigation">
+      <h2>Component Catalog</h2>
+      <ul>
+        <li><a href="#crystals-artwork-price-quick-edit">Artwork Price Quick Edit</a></li>
+        <li><a href="#crystals-artwork-price-visibility-quick-edit">Artwork Price Visibility Quick Edit</a></li>
+        <li><a href="#crystals-artwork-availability-quick-edit">Artwork Availability Quick Edit</a></li>
+      </ul>
+    </nav>
+
+    <section id="crystals-artwork-price-quick-edit">
+      <h2>Artwork Price Quick Edit</h2>
+      <em>Quick edit an artwork's price via a text input.</em>
+
+      <h3>Demo</h3>
+      <div id="artwork-price-quick-edit"></div>
+      <h3>Example</h3>
+      <pre>
+ReactDOM.render(
+  &lt;ArtworkPriceQuickEdit
+    artwork={artwork}
+    saveUrl={saveUrl}
+  /&gt;,
+  document.getElementById(&quot;artwork-price-quick-edit&quot;)
+);
+      </pre>
+    </section>
+
+    <hr />
+
+    <section id="crystals-artwork-price-visibility-quick-edit">
+      <h2>Artwork Price Visibility Quick Edit</h2>
+      <em>Quick edit an artwork's price visibility via a dropdown.</em>
+
+      <h3>Demo</h3>
+      <div id="artwork-price-visibility-quick-edit"></div>
+      <h3>Example</h3>
+      <pre>
+ReactDOM.render(
+  &lt;ArtworkPriceVisibilityQuickEdit
+    artwork={artwork}
+    saveUrl={saveUrl}
+    options={optionsArray}
+  /&gt;,
+  document.getElementById(&quot;artwork-price-visibility-quick-edit&quot;)
+);
+      </pre>
+    </section>
+
+    <hr />
+
+    <section id="crystals-artwork-availability-quick-edit">
+      <h2>Artwork Availability Quick Edit</h2>
+      <em>Quick edit an artwork's availability via a dropdown.</em>
+
+      <h3>Demo</h3>
+      <div id="artwork-availability-quick-edit"></div>
+      <h3>Example</h3>
+      <pre>
+ReactDOM.render(
+  &lt;ArtworkPriceVisibilityQuickEdit
+    artwork={artwork}
+    saveUrl={saveUrl}
+    options={optionsArray}
+  /&gt;,
+  document.getElementById(&quot;artwork-price-visibility-quick-edit&quot;)
+);
+      </pre>
+    </section>
+
+    <script type="text/javascript" src="bundle.js" charset="utf-8"></script>
+  </body>
+</html>
