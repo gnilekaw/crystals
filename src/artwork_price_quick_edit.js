@@ -3,11 +3,17 @@ import InlineTextInput from './base/inline_text_input';
 import ArtworkAttributeUpdatable from './decorators/artwork_attribute_updatable';
 
 class InlineArtworkPrice extends React.Component {
+  display() {
+    return this.props.artwork && this.props.artwork.internal_display_price;
+  }
+
   render() {
     return <InlineTextInput {...this.props}
+      placeholder="e.g. 3500"
       className="crystals-artwork-price"
       object={this.props.artwork}
       attribute="price_listed"
+      display={this.display()}
     />;
   }
 }

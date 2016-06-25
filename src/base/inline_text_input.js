@@ -8,6 +8,11 @@ import { t } from '../helpers/translation';
 import { appendClasses } from '../helpers/dom_utils';
 
 class InlineTextInput extends React.Component {
+  display() {
+    return this.props.display ?
+      this.props.display : this.props.object[this.props.attribute];
+  }
+
   render() {
     const classNames = "crystals-inline-component crystals-inline-text-input";
 
@@ -17,7 +22,7 @@ class InlineTextInput extends React.Component {
         data-component-state={this.props.loading ? 'loading' : 'reading'}
       >
         <div data-element-type="readonly">
-          {this.props.object[this.props.attribute]}
+          {this.display()}
         </div>
         <Form
           inline
@@ -30,6 +35,7 @@ class InlineTextInput extends React.Component {
               type="text"
               name={this.props.attribute}
               disabled={this.props.loading}
+              placeholder={this.props.placeholder}
               defaultValue={this.props.object[this.props.attribute]}
             />
             <Button
@@ -50,6 +56,8 @@ InlineTextInput.propTypes = {
   object: React.PropTypes.object.isRequired,
   attribute: React.PropTypes.string.isRequired,
   className: React.PropTypes.string,
+  display: React.PropTypes.string,
+  placeholder: React.PropTypes.string,
   loading: React.PropTypes.bool,
   onSubmit: React.PropTypes.func,
   t: React.PropTypes.object

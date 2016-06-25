@@ -76,6 +76,42 @@ describe('ArtworkPriceQuickEdit', () => {
     });
   });
 
+  describe('displaying readonly value', () => {
+    let $root;
+
+    context('artwork with internal display price', () => {
+      beforeEach(() => {
+        const props = {
+          artwork: {price_listed: 1000, internal_display_price: '£1,000'},
+          saveUrl: '/api/artworks/mona-lisa'
+        };
+        instance = ReactDOM.render(
+          React.createElement(ArtworkPriceQuickEdit, props), el);
+        $root = $(ReactDOM.findDOMNode(instance));
+      });
+
+      it('renders internal display price', () => {
+        $root.find('[data-element-type="readonly"]').text().should.equal("£1,000");
+      });
+    });
+
+    context('artwork without internal display price', () => {
+      beforeEach(() => {
+        const props = {
+          artwork: {price_listed: 1000},
+          saveUrl: '/api/artworks/mona-lisa'
+        };
+        instance = ReactDOM.render(
+          React.createElement(ArtworkPriceQuickEdit, props), el);
+        $root = $(ReactDOM.findDOMNode(instance));
+      });
+
+      it('renders price listed', () => {
+        $root.find('[data-element-type="readonly"]').text().should.equal("1000");
+      });
+    });
+  });
+
   describe('updating artwork price', () => {
     let dfd, $root;
 

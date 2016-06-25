@@ -33,6 +33,22 @@ describe('InlineTextInput', () => {
       });
     });
 
+    it("renders value for readonly state by object's attribute by default", () => {
+      const props = {object: {price: "3500"}, attribute: "price"};
+      const instance = ReactDOM.render(React.createElement(InlineTextInput, props), el);
+      const root = ReactDOM.findDOMNode(instance);
+
+      $(root).find('[data-element-type="readonly"]').text().should.equal("3500");
+    });
+
+    it('renders value for readonly state by props', () => {
+      const props = {object: {price: "3500"}, attribute: "price", display: "£3,500"};
+      const instance = ReactDOM.render(React.createElement(InlineTextInput, props), el);
+      const root = ReactDOM.findDOMNode(instance);
+
+      $(root).find('[data-element-type="readonly"]').text().should.equal("£3,500");
+    });
+
     it('renders the reading state by default', () => {
       const props = {object: {}, attribute: "whatever"};
       const instance = ReactDOM.render(React.createElement(InlineTextInput, props), el);
