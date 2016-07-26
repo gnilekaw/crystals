@@ -35,7 +35,7 @@ class InlineDropdown extends React.Component {
     return (
       <div
         className={appendClasses(this.props.className, classNames)}
-        data-component-state={this.props.loading ? 'loading' : 'reading'}
+        data-component-state={this.props.state || "inited"}
       >
         <div data-element-type="readonly">
           {this.optionLabelByValue(this.props.value)}
@@ -47,11 +47,13 @@ class InlineDropdown extends React.Component {
           action="javascript:void(0);"
           onSubmit={this.props.onSubmit}
         >
-          <FormGroup>
+          <FormGroup
+            className={this.props.state == "errored" ? "has-error" : null}
+          >
             <FormControl
               componentClass="select"
               name={this.props.attribute}
-              disabled={this.props.loading}
+              disabled={this.props.state == "updating"}
               value={this.props.value}
               onChange={this.submitForm}
             >
@@ -70,7 +72,7 @@ InlineDropdown.propTypes = {
   options: React.PropTypes.array.isRequired,
   value: React.PropTypes.string,
   className: React.PropTypes.string,
-  loading: React.PropTypes.bool,
+  state: React.PropTypes.string,
   onSubmit: React.PropTypes.func,
 };
 

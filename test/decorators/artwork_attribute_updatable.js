@@ -95,13 +95,8 @@ describe('ArtworkAttributeUpdatable', () => {
       $form.on('submit', instance.onSubmit).trigger('submit');
     });
 
-    it('sets the loading state on submit', () => {
-      instance.state.loading.should.be.true()
-    });
-
-    it('unsets the loading state after submit', () => {
-      dfd.resolve();
-      instance.state.loading.should.be.false()
+    it('sets the updating state on submit', () => {
+      instance.state.state.should.equal("updating");
     });
 
     it('makes a proper request to update artwork attribute', () => {
@@ -114,9 +109,38 @@ describe('ArtworkAttributeUpdatable', () => {
       });
     });
 
-    it('updates the artwork after submit', () => {
-      dfd.resolve({title: "Portrait of Mona Lisa"});
-      instance.state.artwork.should.eql({title: "Portrait of Mona Lisa"});
+    context('with successful update', () => {
+      it('updates the artwork after submit', () => {
+        dfd.resolve({title: "Portrait of Mona Lisa"});
+        instance.state.artwork.should.eql({title: "Portrait of Mona Lisa"});
+      });
+
+      it('sets the updated state after submit', () => {
+        dfd.resolve();
+        instance.state.state.should.equal("updated");
+      });
+    });
+
+    context('with failed update', () => {
+      const error = {error: "Not Authorized"};
+
+      it('does not update the artwork after submit', () => {
+        dfd.resolve(error);
+        instance.state.artwork.should.eql({title: "Mona Lisa"});
+      });
+
+      it('sets the errored state after submit', () => {
+        dfd.resolve(error);
+        instance.state.state.should.equal("errored");
+      });
+
+      it('triggers an error event on the form', (done) => {
+        $form.one('error.crystals', (event, data) => {
+          data.should.eql(error);
+          done();
+        })
+        dfd.resolve(error);
+      });
     });
   });
 });

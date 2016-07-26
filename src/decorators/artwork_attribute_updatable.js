@@ -3,11 +3,15 @@ import _ from 'underscore';
 import React from 'react';
 import { serializeFormDataToObject } from '../helpers/dom_utils';
 
+/*
+ * States: inited, updating, updated, errored.
+ */
+
 const ArtworkAttributeUpdatable = Wrapped => {
   class ArtworkAttributeUpdatableComponent extends React.Component {
     constructor(props) {
       super(props);
-      this.state = {artwork: this.props.artwork, loading: false};
+      this.state = {artwork: this.props.artwork, state: "inited"};
       this.onSubmit = this.onSubmit.bind(this);
     }
 
@@ -27,9 +31,10 @@ const ArtworkAttributeUpdatable = Wrapped => {
 
     onSubmit(e) {
       e.preventDefault();
-      this.setState({artwork: this.state.artwork, loading: true});
+      this.setState({artwork: this.state.artwork, state: "updating"});
 
-      const formData = serializeFormDataToObject($(e.target));
+      const $form = $(e.target);
+      const formData = serializeFormDataToObject($form);
       $.ajax({
         url: this.props.saveUrl,
         // TODO: PATCH requests won't send data correctly in capybara-webkit/Qt.
@@ -38,9 +43,14 @@ const ArtworkAttributeUpdatable = Wrapped => {
         type: "PUT",
         data: this.prepareData(formData),
         dataType: "json"
-      }).done((artwork) => {
-        const updated = _.pick(artwork, _.keys(this.props.artwork));
-        this.setState({artwork: updated, loading: false});
+      }).done((data) => {
+        if (_.has(data, "error")) {
+          this.setState({artwork: this.props.artwork, state: "errored"});
+          $form.trigger('error.crystals', [data]);
+        } else {
+          const updated = _.pick(data, _.keys(this.props.artwork));
+          this.setState({artwork: updated, state: "updated"});
+        }
       });
     }
 

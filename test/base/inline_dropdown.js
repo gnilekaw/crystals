@@ -37,20 +37,20 @@ describe('InlineDropdown', () => {
       });
     });
 
-    it('renders the reading state by default', () => {
+    it('renders the inited state by default', () => {
       const props = {object: {}, attribute: "whatever", options: []};
       const instance = ReactDOM.render(React.createElement(InlineDropdown, props), el);
       const root = ReactDOM.findDOMNode(instance);
 
-      $(root).attr('data-component-state').should.equal('reading');
+      $(root).attr('data-component-state').should.equal('inited');
     });
 
-    it('renders the loading state by props', () => {
-      const props = {object: {}, attribute: "whatever", options: [], loading: true};
+    it('renders the state by props', () => {
+      const props = {object: {}, attribute: "whatever", options: [], state: "errored"};
       const instance = ReactDOM.render(React.createElement(InlineDropdown, props), el);
       const root = ReactDOM.findDOMNode(instance);
 
-      $(root).attr('data-component-state').should.equal('loading');
+      $(root).attr('data-component-state').should.equal("errored");
     });
 
     it('renders the dropdown with proper options', () => {
@@ -147,7 +147,7 @@ describe('InlineDropdown', () => {
 
     it('calls props.onSubmit after option change event (via dispatchEvent)', () => {
       const select = $root.find('select').get(0);
-      const event = new Event('change', {bubbles: true, cancelable: false});
+      const event = new window.Event('change', {bubbles: true, cancelable: false});
 
       instance.props.onSubmit.should.not.be.called();
       // TODO: dispatchEvent won't work with detached element here so we have

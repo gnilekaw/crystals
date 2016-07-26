@@ -34,8 +34,9 @@ describe('ArtworkPriceQuickEdit', () => {
 
       console.error.should.be.called();
       console.error.should.be.calledWithExactly(
-        "Warning: Failed propType: Required prop `artwork` was not " +
-        "specified in `ArtworkAttributeUpdatableComponent`."
+        "Warning: Failed prop type: Required prop `artwork` was not " +
+        "specified in `ArtworkAttributeUpdatableComponent`.\n" +
+        "    in ArtworkAttributeUpdatableComponent"
       );
     });
 
@@ -48,8 +49,9 @@ describe('ArtworkPriceQuickEdit', () => {
 
       console.error.should.be.called();
       console.error.should.be.calledWithExactly(
-        "Warning: Failed propType: Required prop `saveUrl` was not " +
-        "specified in `ArtworkAttributeUpdatableComponent`."
+        "Warning: Failed prop type: Required prop `saveUrl` was not " +
+        "specified in `ArtworkAttributeUpdatableComponent`.\n" +
+        "    in ArtworkAttributeUpdatableComponent"
       );
     });
   });
