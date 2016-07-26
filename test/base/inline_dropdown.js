@@ -147,7 +147,7 @@ describe('InlineDropdown', () => {
 
     it('calls props.onSubmit after option change event (via dispatchEvent)', () => {
       const select = $root.find('select').get(0);
-      const event = new Event('change', {bubbles: true, cancelable: false});
+      const event = new window.Event('change', {bubbles: true, cancelable: false});
 
       instance.props.onSubmit.should.not.be.called();
       // TODO: dispatchEvent won't work with detached element here so we have
