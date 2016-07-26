@@ -37,20 +37,20 @@ describe('InlineDropdown', () => {
       });
     });
 
-    it('renders the reading state by default', () => {
+    it('renders the inited state by default', () => {
       const props = {object: {}, attribute: "whatever", options: []};
       const instance = ReactDOM.render(React.createElement(InlineDropdown, props), el);
       const root = ReactDOM.findDOMNode(instance);
 
-      $(root).attr('data-component-state').should.equal('reading');
+      $(root).attr('data-component-state').should.equal('inited');
     });
 
-    it('renders the loading state by props', () => {
-      const props = {object: {}, attribute: "whatever", options: [], loading: true};
+    it('renders the state by props', () => {
+      const props = {object: {}, attribute: "whatever", options: [], state: "errored"};
       const instance = ReactDOM.render(React.createElement(InlineDropdown, props), el);
       const root = ReactDOM.findDOMNode(instance);
 
-      $(root).attr('data-component-state').should.equal('loading');
+      $(root).attr('data-component-state').should.equal("errored");
     });
 
     it('renders the dropdown with proper options', () => {

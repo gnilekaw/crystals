@@ -49,20 +49,20 @@ describe('InlineTextInput', () => {
       $(root).find('[data-element-type="readonly"]').text().should.equal("£3,500");
     });
 
-    it('renders the reading state by default', () => {
+    it('renders the inited state by default', () => {
       const props = {object: {}, attribute: "whatever"};
       const instance = ReactDOM.render(React.createElement(InlineTextInput, props), el);
       const root = ReactDOM.findDOMNode(instance);
 
-      $(root).attr('data-component-state').should.equal('reading');
+      $(root).attr('data-component-state').should.equal('inited');
     });
 
-    it('renders the loading state by props', () => {
-      const props = {object: {}, attribute: "whatever", loading: true};
+    it('renders the state by props', () => {
+      const props = {object: {}, attribute: "whatever", state: 'inited'};
       const instance = ReactDOM.render(React.createElement(InlineTextInput, props), el);
       const root = ReactDOM.findDOMNode(instance);
 
-      $(root).attr('data-component-state').should.equal('loading');
+      $(root).attr('data-component-state').should.equal('inited');
     });
 
     it('renders the input with proper name and value', () => {

@@ -13,13 +13,17 @@ class InlineTextInput extends React.Component {
       this.props.display : this.props.object[this.props.attribute];
   }
 
+  isUpdating() {
+    return this.props.state == "updating";
+  }
+
   render() {
     const classNames = "crystals-inline-component crystals-inline-text-input";
 
     return (
       <div
         className={appendClasses(this.props.className, classNames)}
-        data-component-state={this.props.loading ? 'loading' : 'reading'}
+        data-component-state={this.props.state || "inited"}
       >
         <div data-element-type="readonly">
           {this.display()}
@@ -30,18 +34,20 @@ class InlineTextInput extends React.Component {
           action="javascript:void(0);"
           onSubmit={this.props.onSubmit}
         >
-          <FormGroup>
+          <FormGroup
+            className={this.props.state == "errored" ? "has-error" : null}
+          >
             <FormControl
               type="text"
               name={this.props.attribute}
-              disabled={this.props.loading}
+              disabled={this.isUpdating()}
               placeholder={this.props.placeholder}
               defaultValue={this.props.object[this.props.attribute]}
             />
             <Button
               type="submit"
-              disabled={this.props.loading}
-              className={this.props.loading ? 'is-loading' : null}
+              disabled={this.isUpdating()}
+              className={this.isUpdating() ? 'is-loading' : null}
             >
               {t(this.props.t, 'forms.save')}
             </Button>
@@ -58,7 +64,7 @@ InlineTextInput.propTypes = {
   className: React.PropTypes.string,
   display: React.PropTypes.string,
   placeholder: React.PropTypes.string,
-  loading: React.PropTypes.bool,
+  state: React.PropTypes.string,
   onSubmit: React.PropTypes.func,
   t: React.PropTypes.object
 };
