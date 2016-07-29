@@ -46,10 +46,11 @@ class InlineTextInput extends React.Component {
             />
             <Button
               type="submit"
+              bsStyle="primary"
               disabled={this.isUpdating()}
               className={this.isUpdating() ? 'is-loading' : null}
             >
-              {t(this.props.t, 'forms.save')}
+              {t(this.props.t, 'actions.save')}
             </Button>
           </FormGroup>
         </Form>

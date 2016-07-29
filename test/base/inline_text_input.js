@@ -74,7 +74,7 @@ describe('InlineTextInput', () => {
     });
 
     it('renders the button with proper translation', () => {
-      const props = {object: {}, attribute: "whatever", t: {forms: {save: '儲存'}}};
+      const props = {object: {}, attribute: "whatever", t: {actions: {save: '儲存'}}};
       const instance = ReactDOM.render(React.createElement(InlineTextInput, props), el);
       const root = ReactDOM.findDOMNode(instance);
 
