@@ -29,6 +29,10 @@ class InlineDropdown extends React.Component {
     ReactDOM.findDOMNode(this.refs.form).dispatchEvent(event);
   }
 
+  isUpdating() {
+    return this.props.state == "updating";
+  }
+
   render() {
     const classNames = "crystals-inline-component crystals-inline-dropdown";
 
@@ -50,15 +54,17 @@ class InlineDropdown extends React.Component {
           <FormGroup
             className={this.props.state == "errored" ? "has-error" : null}
           >
-            <FormControl
-              componentClass="select"
-              name={this.props.attribute}
-              disabled={this.props.state == "updating"}
-              value={this.props.value}
-              onChange={this.submitForm}
-            >
-              {this.props.options.map(o => <option key={o[1]} value={o[1]}>{o[0]}</option>)}
-            </FormControl>
+            <div className={`overlayable-input ${this.isUpdating() ? "is-loading" : ""}`}>
+              <FormControl
+                componentClass="select"
+                name={this.props.attribute}
+                disabled={this.isUpdating()}
+                value={this.props.value}
+                onChange={this.submitForm}
+              >
+                {this.props.options.map(o => <option key={o[1]} value={o[1]}>{o[0]}</option>)}
+              </FormControl>
+            </div>
           </FormGroup>
         </Form>
       </div>
