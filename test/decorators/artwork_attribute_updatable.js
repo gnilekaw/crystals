@@ -38,7 +38,6 @@ describe('ArtworkAttributeUpdatable', () => {
           title: "Mona Lisa II",
           year: "1503 - 1517"
         }).should.eql({
-          ignore_blank: true,
           artwork: {
             title: "Mona Lisa II",
             year: "1503 - 1517"
@@ -62,7 +61,6 @@ describe('ArtworkAttributeUpdatable', () => {
           title: "Mona Lisa II",
           year: "1503 - 1517"
         }).should.eql({
-          ignore_blank: true,
           edition_set: {
             title: "Mona Lisa II",
             year: "1503 - 1517"
@@ -88,7 +86,6 @@ describe('ArtworkAttributeUpdatable', () => {
       $.ajax.returns(dfd);
       $form = $(`
         <form>
-          <input name="ignore_blank" value="true" />
           <input name="title" value="Portrait of Mona Lisa" />
         </form>
       `);
@@ -104,7 +101,7 @@ describe('ArtworkAttributeUpdatable', () => {
       $.ajax.args[0][0].should.eql({
         url: "/api/artworks/mona-lisa",
         type: "PUT",
-        data: {ignore_blank: true, artwork: {ignore_blank: "true", title: "Portrait of Mona Lisa"}},
+        data: {artwork: {title: "Portrait of Mona Lisa"}},
         dataType: "json"
       });
     });

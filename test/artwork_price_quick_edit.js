@@ -137,7 +137,7 @@ describe('ArtworkPriceQuickEdit', () => {
         $.ajax.firstCall.should.be.calledWith({
           url: '/api/artworks/mona-lisa',
           type: 'PUT',
-          data: {ignore_blank: true, artwork: {price_listed: "199"}},
+          data: {artwork: {price_listed: "199"}},
           dataType: 'json'
         })
       });

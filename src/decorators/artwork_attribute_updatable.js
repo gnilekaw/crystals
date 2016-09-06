@@ -22,7 +22,7 @@ const ArtworkAttributeUpdatable = Wrapped => {
      * @return {object} Formatted data object ready to be sent to the server.
      */
     prepareData(data) {
-      const prepared = { ignore_blank: true };
+      const prepared = {};
       const key = this.props.isEditionSet ? "edition_set" : "artwork";
 
       prepared[key] = data;

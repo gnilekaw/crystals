@@ -75,7 +75,7 @@ describe('ArtworkAvailabilityQuickEdit', () => {
         $.ajax.firstCall.should.be.calledWith({
           url: '/api/artworks/mona-lisa',
           type: 'PUT',
-          data: {ignore_blank: true, artwork: {availability: "not for sale"}},
+          data: {artwork: {availability: "not for sale"}},
           dataType: 'json'
         })
       });
