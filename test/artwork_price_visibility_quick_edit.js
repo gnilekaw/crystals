@@ -73,7 +73,7 @@ describe('ArtworkPriceVisibilityQuickEdit', () => {
         $.ajax.firstCall.should.be.calledWith({
           url: '/api/artworks/mona-lisa',
           type: 'PUT',
-          data: {ignore_blank: true, artwork: {display_price: "range"}},
+          data: {artwork: {display_price: "range"}},
           dataType: 'json'
         })
       });
